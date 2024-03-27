@@ -32,6 +32,7 @@
 package main
 
 import (
+	_ "go.uber.org/automaxprocs"
 	"flag"
 	"fmt"
 	"os"
@@ -67,8 +68,8 @@ func handleExit() {
 func main() {
 	// This makes sure that we panic and run defers correctly
 	defer handleExit()
-
-	runtime.GOMAXPROCS(runtime.NumCPU())
+	// comment GOMAXPROCS to use uber/automaxprocs
+	//runtime.GOMAXPROCS(runtime.NumCPU())
 
 	// The only command line arg is the config file
 	configPath := flag.String("config-dir", ".", "Directory that contains the configuration file")
